@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+    <configSections xdt:Transform="InsertBefore(/configuration/*[1])" />
+    <configSections xdt:Locator="XPath(/configuration/configSections[last()])">
+        <section name="reCaptchaV2Settings" type="Aliencube.ReCaptcha.Wrapper.ReCaptchaV2Settings, Aliencube.ReCaptcha.Wrapper" requirePermission="false" xdt:Transform="InsertIfMissing" xdt:Locator="Match(name)" />
+    </configSections>
+    <configSections xdt:Transform="RemoveAll" xdt:Locator="Condition(count(*)=0)" />
+
+    <reCaptchaV2Settings
+        requestUrl="https://www.google.com/recaptcha/api/siteverify"
+        apiUrl="https://www.google.com/recaptcha/api.js"
+        siteKey="[YOUR_SITE_KEY]"
+        secretKey="[YOUR_SECRET_KEY]" xdt:Transform="InsertAfter(/configuration/configSections)" />
+</configuration>

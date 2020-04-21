@@ -1,0 +1,20 @@
+
+version: '{build}'
+os: Visual Studio 2017
+configuration: Debug
+environment:
+  COVERALLS_REPO_TOKEN:
+    secure: 4qvxo9ONx36nPuf2u7V0J9E+l55g6gU6t1p2xp7Az04mhYv5sGeaSddllhqMFogk
+install:
+- ps: >-
+    nuget update -self
+
+    dotnet restore
+
+    nuget restore packages.config -PackagesDirectory packages
+    
+    dotnet build .\src\PaulMiami.AspNetCore.Mvc.Recaptcha\PaulMiami.AspNetCore.Mvc.Recaptcha.csproj
+build: off
+test_script:
+- ps: dotnet build .\sample\TestWebApp\TestWebApp.csproj
+- ps: ./Coverage.ps1

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>GoogleRecaptchaOwinMiddleware</id>
+    <version>1.0.0</version>
+    <title>Google Recaptcha Owin Middleware</title>
+    <authors>Zhongming Chen</authors>
+    <owners>Zhongming Chen</owners>
+    <projectUrl>https://github.com/jeremy001181/googlerecaptcha</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Google Recaptcha Owin Middleware</description>
+    <releaseNotes>First release.</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>Google Recaptcha Microsoft OWIN .Net Katana</tags>
+    <dependencies>
+      <dependency id="Owin" version="1.0.0" />
+    </dependencies>
+  </metadata>
+</package>

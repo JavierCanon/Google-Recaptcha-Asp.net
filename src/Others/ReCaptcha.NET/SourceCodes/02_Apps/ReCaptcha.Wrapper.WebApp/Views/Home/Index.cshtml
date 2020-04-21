@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row" style="margin-top: 10px;">
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <div class="jumbotron text-center">
+            <p>@Html.ActionLink("Basic", MVC.Home.ActionNames.Basic)</p>
+        </div>
+    </div>
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <div class="jumbotron text-center">
+            <p>@Html.ActionLink("Advanced", MVC.Home.ActionNames.Advanced)</p>
+        </div>
+    </div>
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <div class="jumbotron text-center">
+            <p>@Html.ActionLink("Callback", MVC.Home.ActionNames.Callback)</p>
+        </div>
+    </div>
+</div>

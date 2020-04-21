@@ -1,0 +1,61 @@
+version: '{build}'
+image: Visual Studio 2017
+
+environment:
+  SNKFILE_SECRET: #THE WARDEN OF THE NORTH
+    secure: 3P4OS4SqlfLaUkiCCN8xVpE6gIE3tNvcbf3mkO58u3u3x9mDyoUa5tcedEKmLEKjmxPVQq+7gC5PqOwy/nn79UpjZdniGX3AdqRqz9edSjs=
+
+skip_commits:
+  message: /(//skip\W*ci)|(read\W*me)/
+
+init:
+    - ps: |
+            If ($Env:APPVEYOR_REPO_TAG_NAME -match "-"){
+              Set-AppveyorBuildVariable -Name "IsPreRelease" -Value True
+            }
+            Else{
+              Set-AppveyorBuildVariable -Name "IsPreRelease" -Value False
+            }
+
+build_script: build.cmd ci
+
+test_script:
+  - build.cmd citest
+
+artifacts:
+  - path: __package\*.nupkg
+    name: NuGet
+  - path: __package\*.zip
+    name: Zip
+
+nuget:
+  disable_publish_on_pr: true
+
+deploy:
+    - provider: GitHub
+      release: 'Release $(APPVEYOR_REPO_TAG_NAME) build $(APPVEYOR_BUILD_VERSION)'
+      tag: $(APPVEYOR_REPO_TAG_NAME)
+      description: '[**CHANGE LOG**](https://github.com/BitArmory/ReCaptcha/blob/master/HISTORY.md)'
+      prerelease: $(IsPreRelease)
+      artifact: Zip, NuGet
+      auth_token:
+          secure: orpmAg4FCSTLlblm4O4HfRuUosiP8Mnxeib0vshgZO0p2nFzKju1FiY6jkVkZBMy
+      on:
+          branch: master
+          appveyor_repo_tag_name: /v\d+\.\d+\.\d+/ 
+          appveyor_repo_tag: true
+
+    - provider: NuGet
+      api_key:
+          secure: G63UldsDJHqas45sJlBFkCQ43nKPacvRz7WUzdC8cbJTKP0jQVqZiDGnjNR9i6ee
+      artifact: NuGet
+      on:
+          branch: master
+          appveyor_repo_tag_name: /v\d+\.\d+\.\d+/
+          appveyor_repo_tag: true
+
+on_failure:
+    - ps: |
+            # Enables RDP for debugging and setup some tools
+            # $blockRdp = $true; choco install notepad2; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+            

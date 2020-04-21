@@ -1,0 +1,56 @@
+﻿@using Aliencube.ReCaptcha.Wrapper.Mvc
+@using Aliencube.ReCaptcha.Wrapper.Mvc.Parameters
+@model Aliencube.ReCaptcha.Wrapper.WebApp.Models.HomeReCaptchaViewModel
+@{
+    ViewBag.Title = "Callback";
+
+    var callback = "onLoadCallback";
+    var elementId = "recaptcha";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@if (!IsPost)
+{
+    using (Html.BeginForm(MVC.Home.ActionNames.Callback, MVC.Home.Name, FormMethod.Post))
+    {
+        <div class="form-group">
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        </div>
+        <div class="form-group" id="@elementId"></div>
+        <input class="btn btn-default" type="submit" name="Submit" />
+    }
+}
+else
+{
+    <div>
+        <ul>
+            <li>Name: @Model.Name</li>
+            <li>Success: @Model.Success</li>
+            @if (@Model.ErrorCodes != null && @Model.ErrorCodes.Any())
+            {
+                <li>
+                    ErrorCodes:
+                    <ul>
+                        @foreach (var errorCode in Model.ErrorCodes)
+                        {
+                            <li>@errorCode</li>
+                        }
+                    </ul>
+                </li>
+            }
+        </ul>
+    </div>
+}
+
+@section Scripts
+{
+    @if (!IsPost)
+    {
+        @Html.ReCaptchaApiJs(Model.ApiUrl,
+                             ApiJsRenderingOptions.Async | ApiJsRenderingOptions.Defer,
+                             new ResourceParameters() { OnLoad = callback, Render = WidgetRenderType.Explicit, LanguageCode = WidgetLanguageCode.Korean })
+        @Html.ReCaptchaCallbackJs(callback, elementId, new RenderParameters(){ SiteKey = Model.SiteKey, Theme = RenderThemeType.Dark })
+    }
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>reCaptcha.AspNet.Mvc</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <projectUrl>https://www.google.com/recaptcha</projectUrl>
+    <iconUrl>https://www.gstatic.com/recaptcha/api2/logo_48.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <tags>captcha google recaptcha asp.net mvc</tags>
+    <releaseNotes>
+      * Updated major version - but didn't broke the current interface - safe to update
+      * Add multiple instance on one page support - #11
+    </releaseNotes>
+  </metadata>
+
+  <!--<frameworkAssemblies>
+    <frameworkAssembly assemblyName="System.Web.Mvc" targetFramework="net40" />
+    <frameworkAssembly assemblyName="System.Web.WebPages" targetFramework="net40" />
+  </frameworkAssemblies>-->
+ 
+  <files>
+    <file src="obj\CodeGen\**\*.cs" target="src"/>
+    <file src="**\*.cshtml" target="src" />
+
+    <file src="bin\Release\$id$.pdb" target="lib\net451\$id$.pdb" />
+    
+    <file src="bin\Release\net40\$id$.dll" target="lib\net40\$id$.dll" />
+    <file src="bin\Release\net40\$id$.pdb" target="lib\net40\$id$.pdb" />
+    
+    <file src="bin\Release\net45\$id$.dll" target="lib\net45\$id$.dll" />
+    <file src="bin\Release\net45\$id$.pdb" target="lib\net45\$id$.pdb" />
+
+    <file src="readme.txt" target="" />
+  </files>
+</package>

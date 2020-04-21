@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+    <configSections>
+        <section name="reCaptchaV2Settings" xdt:Transform="Remove" xdt:Locator="Match(name)" />
+    </configSections>
+    <configSections xdt:Transform="RemoveAll" xdt:Locator="Condition(count(*)=0)" />
+
+    <reCaptchaV2Settings xdt:Transform="Remove" />
+
+    <appSettings>
+        <add key="RequestUrl" xdt:Transform="Remove" xdt:Locator="Match(key)" />
+        <add key="ApiUrl" xdt:Transform="Remove" xdt:Locator="Match(key)" />
+        <add key="SiteKey" xdt:Transform="Remove" xdt:Locator="Match(key)" />
+        <add key="SecretKey" xdt:Transform="Remove" xdt:Locator="Match(key)" />
+    </appSettings>
+</configuration>

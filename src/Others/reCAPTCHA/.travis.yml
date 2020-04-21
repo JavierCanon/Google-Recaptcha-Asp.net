@@ -1,0 +1,12 @@
+language: csharp
+mono: none
+dist: xenial
+dotnet: 1.0
+
+install:
+  - dotnet restore
+  - dotnet build -f netstandard1.6 src/PaulMiami.AspNetCore.Mvc.Recaptcha/PaulMiami.AspNetCore.Mvc.Recaptcha.csproj
+
+script:
+  - dotnet build sample/TestWebApp/TestWebApp.csproj
+  - dotnet test test/PaulMiami.AspNetCore.Mvc.Recaptcha.Test/PaulMiami.AspNetCore.Mvc.Recaptcha.Test.csproj

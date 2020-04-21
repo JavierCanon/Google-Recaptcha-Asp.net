@@ -1,0 +1,50 @@
+﻿@{
+    var appTitle = "reCaptcha.NET Sample";
+    var thisYear = DateTime.Today.Year > 2015 ? String.Format("- {0}", DateTime.Today.Year) : String.Empty;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - @appTitle</title>
+    <link href="@Links.Content.Site_css" rel="stylesheet" type="text/css" />
+    <link href="@Links.Content.bootstrap_min_css" rel="stylesheet" type="text/css" />
+    <script src="@Links.Scripts.modernizr_2_8_3_js"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink(appTitle, MVC.Home.ActionNames.Index, MVC.Home.Name, new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>@Html.ActionLink("Basic", MVC.Home.ActionNames.Basic)</li>
+                    <li>@Html.ActionLink("Advanced", MVC.Home.ActionNames.Advanced)</li>
+                    <li>@Html.ActionLink("Callback", MVC.Home.ActionNames.Callback)</li>
+                    <li><a href="https://github.com/aliencube/ReCaptcha.NET">GitHub</a></li>
+                    <li><a href="https://www.nuget.org/packages/Aliencube.ReCaptcha.NET.MVC/">NuGet</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer class="text-right">
+            <p>&copy; 2015 @thisYear | <a href="https://github.com/aliencube">Aliencube Community</a></p>
+        </footer>
+    </div>
+
+    <script src="@Links.Scripts.jquery_2_1_3_min_js"></script>
+    <script src="@Links.Scripts.bootstrap_min_js"></script>
+    @RenderSection("Scripts", false)
+</body>
+</html>
